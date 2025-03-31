@@ -1,0 +1,48 @@
+{% extends 'pizzaShop/index.html' %}
+
+{% block content %}
+    <!-- Header-->
+<header class="bg-dark py-5">
+    <div class="container px-4 px-lg-5 my-5">
+        <div class="text-center text-white">
+            <h1 class="display-4 fw-bolder">Order Pizza</h1>
+            <p class="lead fw-normal text-white-50 mb-0">Please checkout our delicious pizzas below!</p>
+        </div>
+    </div>
+</header>
+<br/><br/>
+<section >
+    <center>
+        {% if order_id %}
+        <h3 class=" ">
+            <a href="{% url 'edit_order' order_id %}" class="btn btn-secondary link-underline-none">Edit your Order: {{pizza.size}} {{pizza.topping1}} & {{pizza.topping2}} pizza</a>
+        </h3>
+        {% endif %}    
+    
+        <br/><br/>
+
+        <form method="POST" action="{% url 'order' %}" >
+            {% csrf_token %}
+
+            {{pizzaform}}
+
+            <input type="submit" value="Order Pizza" />
+        </form>
+
+        <br/><br/>
+
+        <h3>Want more than one pizza?</h3>
+        <form method="GET" action="{% url 'orderpizzas' %}">
+            {% csrf_token %}
+            
+            {{ multiple_form }}
+
+            <input type="submit" value="Get Pizzas" />
+        </form>
+
+    </center>
+</section>
+
+<br/><br/>
+
+{% endblock %}

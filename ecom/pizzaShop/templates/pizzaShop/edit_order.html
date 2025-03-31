@@ -1,0 +1,30 @@
+{% extends 'pizzaShop/index.html' %}
+
+{% block content %}
+    <!-- Header-->
+<header class="bg-dark py-5">
+    <div class="container px-4 px-lg-5 my-5">
+        <div class="text-center text-white">
+            <h1 class="display-4 fw-bolder">Edit Order</h1>
+            <p class="lead fw-normal text-white-50 mb-0">Please make your changes and save it below!</p>
+        </div>
+    </div>
+</header>
+<br/><br/>
+<section >
+    <center>
+
+        <form method="POST" action="{% url 'edit_order' pizza.order_id %}" >
+            {% csrf_token %}
+
+            {{pizzaform}}
+
+            <input type="submit" value="Edit Pizza" />
+        </form>
+
+    </center>
+</section>
+
+<br/><br/>
+
+{% endblock %}

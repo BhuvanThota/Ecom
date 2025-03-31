@@ -1,0 +1,36 @@
+{% extends 'pizzaShop/index.html' %}
+
+{% block content %}
+    <!-- Header-->
+<header class="bg-dark py-5">
+    <div class="container px-4 px-lg-5 my-5">
+        <div class="text-center text-white">
+            <h1 class="display-4 fw-bolder">Order Multiple Pizzas</h1>
+            <p class="lead fw-normal text-white-50 mb-0">Please checkout our delicious pizzas below!</p>
+        </div>
+    </div>
+</header>
+<br/><br/>
+<section >
+    <center>
+        
+        <form method="POST" action="{% url 'orderpizzas' %}" >
+            {% csrf_token %}
+
+            {{ formset.management_form }}
+
+            {% for form in formset %}
+                
+                {{form}}
+                <br/><br/>
+            {% endfor %}
+
+            <input type="submit" value="Order Pizzas" />
+        </form>
+
+    </center>
+</section>
+
+<br/><br/>
+
+{% endblock %}
